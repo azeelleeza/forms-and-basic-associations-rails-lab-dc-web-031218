@@ -48,6 +48,8 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(Song.column_names,:artist_name,note_contents: [])
+    params.require(:song).permit(Song.column_names,Song.public_instance_methods(include_super=false),:note_contents=>[])
+    # params.require(:song).permit(Song.column_names,:artist_name,:note_contents=>[])
+    # public_instance_methods(include_super=false)
   end
 end
